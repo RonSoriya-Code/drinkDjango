@@ -1,0 +1,47 @@
+
+{% load static %}
+{# Sidebar: uses project URL namespaces from root urls.py #}
+<nav id="sidebar" class="bg-light border-right">
+	<div class="sidebar-header px-3 py-4">
+		<h3 class="mb-0">Learn DJango</h3>
+	</div>
+
+	<ul class="nav flex-column px-2">
+		<li class="nav-item">
+			<a class="nav-link d-flex align-items-center" href="{% url 'dashboard:dashboard' %}">
+				<span class="me-2">📊</span>
+				Dashboards
+				<span class="ms-auto">›</span>
+			</a>
+		</li>
+
+		<li class="nav-item">
+			<a class="nav-link d-flex align-items-center" href="{% url 'category:category_list' %}">
+				<span class="me-2">📂</span>
+				Categories
+				<span class="ms-auto">›</span>
+			</a>
+		</li>
+
+		<li class="nav-item">
+			<a class="nav-link d-flex align-items-center" href="{% url 'list_product:product_list' %}">
+				<span class="me-2">🛍️</span>
+				Products
+				<span class="ms-auto">›</span>
+			</a>
+		</li>
+
+		<li class="nav-item">
+			<a class="nav-link d-flex align-items-center" href="{% url 'customer:customer_list' %}">
+				<span class="me-2">😎</span>
+				Customers
+				<span class="ms-auto">›</span>
+			</a>
+		</li>
+	
+	</ul>
+
+	<div class="sidebar-footer px-3 py-3 mt-auto small text-muted">
+		<div>Version: <strong>Pro</strong></div>
+	</div>
+</nav>
