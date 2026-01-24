@@ -16,9 +16,10 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Gender</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Address</th>
+                        <th>Debt</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -31,6 +32,8 @@
                             <td>{{ customer.gender }}</td>
                             <td>{{ customer.email }}</td>
                             <td>{{ customer.phone }}</td>
+                            <td>{{ customer.profile.address }}</td>
+                            <td>{{ customer.profile.debt }}</td>
                             <td>
                                 <a href="{% url 'customer:customer_detail' customer.id %}">
                                     <button class="btn btn-sm btn-info">Detail</button>
@@ -38,7 +41,15 @@
                                 <a href="{% url 'customer:customer_edit' customer.id %}">
                                     <button class="btn btn-sm btn-warning">Edit</button>
                                 </a> |   
-                                <a href="{% url 'customer:customer_delete' customer.id %}"><button class="btn btn-sm btn-danger">Delete</button></a>
+                                <a href="{% url 'customer:customer_delete' customer.id %}">
+                                    <button type="button" 
+                                        class="btn btn-danger btn-sm" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#deleteModal"
+                                        data-customer-id="{{ customer.pk }}"
+                                        data-customer-name="{{ customer.name }}">Delete
+                                    </button>
+                                </a>
                             </td>
                         </tr>
                     {% empty %}
@@ -53,4 +64,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

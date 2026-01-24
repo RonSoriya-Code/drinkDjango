@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% load bootstrap5 %}
+
+{% block content %}
+<h3>Edit Category</h3>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <button class="btn btn-primary" type="submit">Save</button>
+  <a href="{% url 'list_category:category_detail' form.instance.pk %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

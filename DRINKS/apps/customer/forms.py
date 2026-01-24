@@ -1,5 +1,5 @@
 from django import forms
-from .models import Customer
+from .models import Customer, CustomerProfile
 
 class CustomerForm(forms.ModelForm):
     class Meta:
@@ -12,3 +12,7 @@ class CustomerForm(forms.ModelForm):
             'gender' : {'required' : 'Gender is required'},
         }
         
+class CustomerProfileForm(forms.ModelForm):
+    class Meta:
+        model = CustomerProfile
+        fields = ['address', 'debt']

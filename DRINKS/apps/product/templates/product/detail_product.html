@@ -15,6 +15,8 @@
     {% endif %}
     <p><strong>Quantity:</strong> {{ product.quantity }}</p>
     <p><strong>Price:</strong> {{ product.price }}</p>
+    <p><strong>Address:</strong> {{ product.profile.price }}</p>
+    <p><strong>Stock Date:</strong> {{ product.profile.stock_date }}</p>
     <a href="{% url 'list_product:product_list' %}" class="btn btn-secondary">Back to list</a>
   </div>
 </div>

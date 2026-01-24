@@ -7,8 +7,8 @@
         <h2>Create Customer</h2>
     </div>
     <div class="card-body">
-        {% csrf_token %}
         <form method="post">
+        {% csrf_token %}
             {% for field in form %}
 
                 <div class="form-group mb-3">
@@ -28,8 +28,29 @@
                     {% endif %}
 
                 </div>
-
             {% endfor %}
+
+            {% for field in profile_form %}
+
+                <div class="form-group mb-3">
+                    <label class="form-label">
+                        {{ field.label }}
+                        {% if field.field.required %}
+                            <span class="text-danger">*</span>
+                        {% endif%}
+                    </label>
+
+                    {{ field | add_class:"form-control" }}
+
+                    {% if field.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ field.errors|striptags }}
+                        </div>
+                    {% endif %}
+
+                </div>
+            {% endfor %}          
+
             <button type="submit" class="btn btn-primary">Add Customer</button>
             <a href="{% url 'customer:customer_list' %}" class="btn btn-secondary">Cancel</a>
         </form>
