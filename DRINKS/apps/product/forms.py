@@ -22,3 +22,7 @@ class ProductProfileForm(forms.ModelForm):
     class Meta:
         model = ProductProfile
         fields = ['address', 'stock_date']
+        widgets = {
+            'address': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'stock_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        }
