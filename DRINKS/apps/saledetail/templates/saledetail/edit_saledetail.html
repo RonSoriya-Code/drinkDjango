@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load form_tags %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Edit Sale Detail</h2>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            {% for field in form %}
+
+                <div class="form-group mb-3">
+                    <label class="form-label">
+                        {{ field.label }}
+                        {% if field.field.required %}
+                            <span class="text-danger">*</span>
+                        {% endif%}
+                    </label>
+
+                    {{ field | add_class:"form-control" }}
+
+                    {% if field.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ field.errors|striptags }}
+                        </div>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+
+            {% comment %} {% for field in profile_form %}
+            <div class="form-group mb-3">
+                <label class="form-label">
+                    {{ field.label }}
+                    {% if field.field.required %}
+                        <span class="text-danger">*</span>
+                    {% endif%}
+                </label>
+
+                {{ field | add_class:"form-control" }}
+
+                {% if field.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ field.errors|striptags }}
+                    </div>
+                {% endif %}
+
+            </div>
+            {% endfor %} {% endcomment %}
+
+            <button type="submit" class="btn btn-primary">Update Sale Detail</button>
+            <a href="{% url 'list_saledetail:saledetail_detail' form.instance.pk %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

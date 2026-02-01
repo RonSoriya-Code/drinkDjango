@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Sale List</h2>
+    </div>
+    <div class="card-body">
+        <a href="{% url 'list_sale:sale_add' %}" class="btn btn-primary mb-3">
+            Add New Sale
+        </a>
+
+        <a href="{% url 'list_saledetail:saledetail_list' %}" class="btn btn-primary mb-3">
+            Sale Detail
+        </a>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>SaleCode</th>
+                        <th>SaleDate</th>
+                        <th>CostomerID</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for sale in sales%}
+                        <tr>
+                            <td>{{ sale.id }}</td>
+                            <td>{{ sale.saleCode }}</td>
+                            <td>{{ sale.saleData }}</td>
+                            <td>{{ sale.customerId }}</td>
+                            <td>
+                                <a href="{% url 'list_sale:sale_detail' sale.id %}">
+                                    <button class="btn btn-sm btn-info">Detail</button>
+                                </a> |
+                                <a href="{% url 'list_sale:sale_edit' sale.id %}">
+                                    <button class="btn btn-sm btn-warning">Edit</button>
+                                </a> |   
+                                <a href="{% url 'list_sale:sale_delete' sale.id %}"><button class="btn btn-sm btn-danger">Delete</button></a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                No products found
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

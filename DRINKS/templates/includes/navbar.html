@@ -1,19 +1,40 @@
-
 {% load static %}
 
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 shadow">
-	<!-- Sidebar Toggle (Topbar) -->
-	<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle me-2">
-		<i class="fa fa-bars"></i>
-	</button>
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle me-2">
+        <i class="fa fa-bars"></i>
+    </button>
 
-	<!-- Topbar Navbar -->
-	<ul class="navbar-nav ms-auto align-items-center ">
-		<!-- Docs link -->
-		<li class="nav-item d-none d-sm-block me-3">
-			<a class="nav-link text-muted" href="#">Documentation ›</a>
-		</li>
+    <ul class="navbar-nav ms-auto align-items-center ">
+        <li class="nav-item d-none d-sm-block me-3">
+            <a class="nav-link text-muted" href="#">Documentation ›</a>
+        </li>
 
-		
-	</ul>
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        {% if user.is_authenticated %}
+            <li class="nav-item d-none d-sm-block me-3">
+                <span class="nav-link text-dark fw-bold">
+                    {{ user.username }}
+                </span>
+            </li>
+
+            <li class="nav-item">
+                <form action="{% url 'authen:logout' %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link nav-link text-danger" style="text-decoration: none;">
+                        Logout
+                    </button>
+                </form>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link text-primary" href="{% url 'authen:login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-primary" href="{% url 'authen:register' %}">Register</a>
+            </li>
+        {% endif %}
+        
+    </ul>
 </nav>

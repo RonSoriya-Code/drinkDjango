@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Sale Detail List</h2>
+    </div>
+    <div class="card-body">
+        <a href="{% url 'list_saledetail:saledetail_add' %}" class="btn btn-primary mb-3">
+            Add Sale Detail
+        </a>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Sale</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for saledetail in saledetails %}
+                        <tr>
+                            <td>{{ saledetail.id }}</td>
+                            <td>{{ saledetail.sale }}</td>
+                            <td>{{ saledetail.product }}</td>
+                            <td>{{ saledetail.qty }}</td>
+                            <td>{{ saledetail.price }}</td>
+                            <td>
+                                <a href="{% url 'list_saledetail:saledetail_detail' saledetail.id %}">
+                                    <button class="btn btn-sm btn-info">Detail</button>
+                                </a> |
+                                <a href="{% url 'list_saledetail:saledetail_edit' saledetail.id %}">
+                                    <button class="btn btn-sm btn-warning">Edit</button>
+                                </a> |   
+                                <a href="{% url 'list_saledetail:saledetail_delete' saledetail.id %}"><button class="btn btn-sm btn-danger">Delete</button></a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                No SaleDetail found
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

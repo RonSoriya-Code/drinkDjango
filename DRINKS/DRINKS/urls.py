@@ -25,6 +25,10 @@ urlpatterns = [
     path('customer/', include('apps.customer.urls', namespace='list_customer')),
     path('', include('apps.dashboard.urls', namespace='dashboard')),
     path('product/', include('apps.product.urls', namespace='list_product')),
+    path('sale/', include('apps.sale.urls', namespace='list_sale')),
+    path('saledetail/', include('apps.saledetail.urls', namespace='list_saledetail')),
+    # path('supplier/', include('apps.supplier.urls', namespace='list_supplier')),
+    path('authen/', include('apps.authen.urls', namespace='authen')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
